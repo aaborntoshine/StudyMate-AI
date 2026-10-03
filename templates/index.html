@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>StudyMate AI — Learn it your way</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="StudyMate AI home"><span class="brand-mark">S</span><span>StudyMate <b>AI</b></span></a>
+    <span class="model-tag">Powered by Gemma 4</span>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow"><span class="sparkle">✦</span> YOUR PERSONAL AI STUDY PARTNER</div>
+      <h1>Big questions.<br><span>Clear answers.</span></h1>
+      <p class="subtitle">Learn at your own pace. Ask a question, share a photo, and turn confusion into understanding.</p>
+    </section>
+
+    <section class="workspace">
+      <div class="mode-row" role="group" aria-label="Choose study mode">
+        <button class="mode active" type="button" data-mode="explain"><span>◉</span> Explain</button>
+        <button class="mode" type="button" data-mode="quiz"><span>▤</span> Practice quiz</button>
+        <button class="mode" type="button" data-mode="notes"><span>✎</span> Revision notes</button>
+      </div>
+
+      <form id="study-form">
+        <label for="question" class="field-label">What are you learning today?</label>
+        <textarea id="question" name="question" rows="4" placeholder="For example: Explain binary search with a simple example…"></textarea>
+
+        <label class="upload-area" for="image">
+          <span class="upload-icon">↑</span>
+          <span class="upload-copy"><strong>Upload a question image</strong><small>Textbook page, diagram, or handwritten question · PNG, JPG, WEBP · max 8 MB</small></span>
+          <span class="choose-file">Choose image</span>
+        </label>
+        <input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+        <div id="file-name" class="file-name" aria-live="polite"></div>
+
+        <div class="examples">
+          <span>Try:</span>
+          <button type="button" class="example" data-question="Explain the difference between circuit switching and packet switching with examples.">Computer networks</button>
+          <button type="button" class="example" data-question="Explain binary search step by step using the array [2, 5, 8, 12, 16, 23, 38] to find 16.">Data structures</button>
+          <button type="button" class="example" data-question="Explain Newton's three laws of motion in simple language.">Physics</button>
+        </div>
+        <button id="submit-btn" class="submit-btn" type="submit"><span>✦</span> <span id="submit-label">Explain my question</span> <span class="arrow">→</span></button>
+      </form>
+    </section>
+
+    <section id="result-card" class="result-card" hidden>
+      <div class="result-heading"><div><span class="result-icon">✦</span><span id="result-title">Your study guide</span></div><button id="copy-btn" type="button" class="copy-btn">Copy answer</button>
+    
+<button id="download-btn" type="button" class="copy-btn" hidden>Download PDF ↓</button></div>
+      <div id="loading" class="loading" hidden><span class="spinner"></span><span>StudyMate is preparing your answer…</span></div>
+      <div id="error" class="error" role="alert" hidden></div>
+      <article id="answer" class="answer" aria-live="polite"></article>
+      
+<div id="quiz-container" hidden>
+  <p id="quiz-progress"></p>
+  <h3 id="quiz-question"></h3>
+  <div id="quiz-options"></div>
+  <p id="quiz-feedback" aria-live="polite"></p>
+  <button id="quiz-next" type="button" hidden>
+    Next Question →
+  </button>
+  <div id="quiz-score" hidden></div>
+</div>
+      <p class="disclaimer">AI can make mistakes. Check important answers against your class materials or a trusted source.</p>
+    </section>
+
+    <footer><span>Made for curious minds</span><span>Learn • Practice • Grow</span></footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
